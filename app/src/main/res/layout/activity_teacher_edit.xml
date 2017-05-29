@@ -1,0 +1,137 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="top"
+    android:paddingTop="8dp"
+    android:paddingLeft="8dp"
+    android:paddingRight="8dp"
+    android:paddingBottom="8dp"
+    android:orientation="vertical"
+    tools:context="casper.pta_database.TeacherEdit">
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insert/Alter Grades: " />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_toRightOf="@+id/editTextAssignmentName"
+        android:layout_toEndOf="@+id/editTextAssignmentName" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView7"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/spinner"
+        android:layout_toStartOf="@+id/spinner" />
+
+    <EditText
+        android:id="@+id/editGradeValue"
+        android:layout_width="151dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Grade Value"
+        android:layout_alignBottom="@+id/buttonInsertGrade"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonInsertGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Input"
+        android:layout_below="@+id/spinner"
+        android:layout_toRightOf="@+id/spinner2"
+        android:layout_toEndOf="@+id/spinner2" />
+
+    <TextView
+        android:id="@+id/textInsertAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Insert Assignment:"
+        android:layout_marginTop="21dp"
+        android:layout_below="@+id/editGradeValue"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <EditText
+        android:id="@+id/editTextAssignmentName"
+        android:layout_width="166dp"
+        android:layout_height="wrap_content"
+        android:ems="10"
+        android:inputType="textPersonName"
+        android:hint="Assignment Name"
+        android:layout_alignBottom="@+id/buttonInsertAssignment"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Button
+        android:id="@+id/buttonInsertAssignment"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Add"
+        android:layout_below="@+id/textInsertAssignment"
+        android:layout_toRightOf="@+id/editTextAssignmentName"
+        android:layout_toEndOf="@+id/editTextAssignmentName" />
+
+    <ListView
+        android:id="@+id/listNames"
+        android:layout_width="100dp"
+        android:layout_height="200dp"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drop Assignment:"
+        android:layout_alignTop="@+id/button"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true" />
+
+    <Spinner
+        android:id="@+id/spinnerDropAssignment"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/textView8"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_toLeftOf="@+id/buttonInsertAssignment"
+        android:layout_toStartOf="@+id/buttonInsertAssignment" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Drop"
+        android:layout_centerVertical="true"
+        android:layout_toRightOf="@+id/spinnerDropAssignment"
+        android:layout_toEndOf="@+id/spinnerDropAssignment" />
+
+    <Button
+        android:id="@+id/buttonDeleteGrade"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/textInsertAssignment"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:text="Alter" />
+
+
+</RelativeLayout>
