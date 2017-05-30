@@ -15,6 +15,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
 import java.net.URLEncoder;
+import java.util.Arrays;
 
 /**
  * Created by casper on 5/17/17.
@@ -22,6 +23,8 @@ import java.net.URLEncoder;
 
 public class ServerTask extends AsyncTask <String, Void, String> {
     private Context context;
+    private String[] loginNames = {"Rasha Hakim", "Linda Jaramillo", "Jamila Ayad", "Theresa Aldana", "Wesley Smith", "Sahar Abuarja", "Christine Sanchez",
+            "Ana Gomez", "Heba Ahmed", "Sina'a Ali", "Sam", "Paul", "Aisha", "Aya", "Ziad"};
 
     ServerTask (Context context) {
         this.context = context;
@@ -469,6 +472,14 @@ public class ServerTask extends AsyncTask <String, Void, String> {
         else if (result.contains("changed"))
         {
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+        else if (result.contains("Failed!"))
+        {
+            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
+        }
+        else if (Arrays.asList(loginNames).contains(result))
+        {
+            Toast.makeText(context, "Welcome "+result+"!", Toast.LENGTH_LONG).show();
         }
     }
 }
