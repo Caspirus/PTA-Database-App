@@ -1,6 +1,7 @@
 package casper.pta_database;
 
 import android.app.AlertDialog;
+import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.content.Intent;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import java.io.UnsupportedEncodingException;
 import java.security.MessageDigest;
@@ -18,10 +20,9 @@ import org.apache.commons.codec.binary.Hex;
 
 public class MainActivity extends AppCompatActivity {
     EditText userName, password;
-    String loginUser, loginPassword, method;
     ActionBar actionBar;
     Button button;
-    AlertDialog alertDialog;
+    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,15 +37,14 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v)
             {
                 teacherLogin();
-                parentLogin();
             }
         });
     }
 
     private void teacherLogin ()
     {
-        loginUser = userName.getText().toString();
-        loginPassword = password.getText().toString();
+        String loginUser = userName.getText().toString();
+        String loginPassword = password.getText().toString();
         try {
             MessageDigest messageDigest = MessageDigest.getInstance("SHA-256");
             byte[] hash = messageDigest.digest(loginPassword.getBytes("UTF-8"));
@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity {
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
         }
-        method = "login";
+        String method = "login";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, loginUser, loginPassword);
 
@@ -66,9 +66,6 @@ public class MainActivity extends AppCompatActivity {
                     TeacherSelect.teacher.setTeacherName(serverLogin);
                     TeacherSelect.teacher.setClasses(new String[]{"Math_7", "Science_7", "ELA_7", "Texas_History"});
                     startActivity(new Intent(MainActivity.this, TeacherSelect.class));
-                    break;
-                case "Laura Kassim":
-                    startActivity(new Intent(MainActivity.this, AdminSelect.class));
                     break;
                 case "Linda Jaramillo":
                     TeacherSelect.teacher.setTeacherName(serverLogin);
@@ -115,25 +112,23 @@ public class MainActivity extends AppCompatActivity {
                     TeacherSelect.teacher.setClasses(new String[]{"IslamicStudies_4_5", "Arabic_7", "Quran_7", "IslamicStudies_7"});
                     startActivity(new Intent(MainActivity.this, TeacherSelect.class));
                     break;
-
-            }
-        } catch (InterruptedException e) {
-            e.printStackTrace();
-        } catch (ExecutionException e) {
-            e.printStackTrace();
-        }
-    }
-
-    private void parentLogin ()
-    {
-        method = "parent_login";
-        ServerTask serverTask = new ServerTask(this);
-        serverTask.execute(method, userName.getText().toString(), password.getText().toString());
-        try {
-            String serverLogin = serverTask.get();
-            switch (serverLogin)
-            {
                 case "Sam":
+                    ParentSelect.student.setName(serverLogin);
+                    startActivity(new Intent(MainActivity.this, ParentSelect.class));
+                    break;
+                case "Paul":
+                    ParentSelect.student.setName(serverLogin);
+                    startActivity(new Intent(MainActivity.this, ParentSelect.class));
+                    break;
+                case "Aya":
+                    ParentSelect.student.setName(serverLogin);
+                    startActivity(new Intent(MainActivity.this, ParentSelect.class));
+                    break;
+                case "Aisha":
+                    ParentSelect.student.setName(serverLogin);
+                    startActivity(new Intent(MainActivity.this, ParentSelect.class));
+                    break;
+                case "Ziad":
                     ParentSelect.student.setName(serverLogin);
                     startActivity(new Intent(MainActivity.this, ParentSelect.class));
                     break;

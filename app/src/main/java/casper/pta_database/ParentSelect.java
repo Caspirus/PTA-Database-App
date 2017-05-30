@@ -1,6 +1,7 @@
 package casper.pta_database;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -12,12 +13,15 @@ import java.util.concurrent.ExecutionException;
 
 public class ParentSelect extends AppCompatActivity {
     ListView allClasses;
+    ActionBar actionBar;
     public static Student student = new Student ("","");
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_select);
+        actionBar = getSupportActionBar();
         allClasses = (ListView) findViewById(R.id.listAllClasses);
+        actionBar.setTitle(student.getName());
         ArrayAdapter<String> arrayAdapterGrades = new ArrayAdapter<String>(this, R.layout.list_view_custom, getStudentClasses());
         allClasses.setAdapter(arrayAdapterGrades);
         allClasses.setOnItemClickListener(new AdapterView.OnItemClickListener() {

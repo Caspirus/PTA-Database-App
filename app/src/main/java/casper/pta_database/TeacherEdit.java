@@ -17,7 +17,6 @@ import java.util.concurrent.ExecutionException;
 
 public class TeacherEdit extends AppCompatActivity {
     Button insertGrade, insertAssignment, dropAssignment, deleteGrade;
-    String method, column;
     Spinner names, assignments, dropAssignments;
     EditText assignmentName, gradeValue;
     ListView listNames;
@@ -90,7 +89,7 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void insertGrade ()
     {
-        method = "insert_grade";
+        String method = "insert_grade";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName(), assignments.getSelectedItem().toString(),
                 names.getSelectedItem().toString(), gradeValue.getText().toString());
@@ -98,7 +97,7 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void deleteGrade ()
     {
-        method = "update_grade";
+        String method = "update_grade";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName(), assignments.getSelectedItem().toString(),
                 names.getSelectedItem().toString(), gradeValue.getText().toString());
@@ -106,7 +105,7 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void displayNameData ()
     {
-        method = "get_name";
+        String method = "get_name";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName());
         String [] studentNames = new String[0];
@@ -125,7 +124,7 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void allNames ()
     {
-        method = "get_name";
+        String method = "get_name";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName());
         String [] studentNames = new String[0];
@@ -142,7 +141,7 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void displayAssignmnentData (Spinner spinner)
     {
-        method = "get_columns";
+        String method = "get_columns";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName());
         String[] columnNames = new String[0];
@@ -161,16 +160,16 @@ public class TeacherEdit extends AppCompatActivity {
 
     private void insertAssignment ()
     {
-        column = assignmentName.getText().toString();
-        method = "insert_column";
+        String column = assignmentName.getText().toString();
+        String method = "insert_column";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName(), column);
     }
 
     private void dropAssignment ()
     {
-        column = dropAssignments.getSelectedItem().toString();
-        method = "drop_column";
+        String column = dropAssignments.getSelectedItem().toString();
+        String method = "drop_column";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName(), column);
     }

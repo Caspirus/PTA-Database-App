@@ -1,6 +1,5 @@
 package casper.pta_database;
 
-import android.app.AlertDialog;
 import android.os.AsyncTask;
 import android.content.Context;
 import android.widget.Toast;
@@ -22,7 +21,6 @@ import java.net.URLEncoder;
  */
 
 public class ServerTask extends AsyncTask <String, Void, String> {
-    AlertDialog alertDialog;
     private Context context;
 
     ServerTask (Context context) {
@@ -31,8 +29,6 @@ public class ServerTask extends AsyncTask <String, Void, String> {
 
     @Override
     protected void onPreExecute() {
-        alertDialog = new AlertDialog.Builder(context).create();
-        alertDialog.setTitle("Login Information:");
     }
 
     @Override
@@ -51,7 +47,7 @@ public class ServerTask extends AsyncTask <String, Void, String> {
         String getStudentClassesUrl = "http://138.68.245.206/webapp/get_student_classes.php";
         String parentLoginUrl = "http://138.68.245.206/webapp/parent_login.php";
         String method = params[0];
-        String tableName, colName, record, userName, password, studentName, columns, column, tables;
+        String tableName, colName, record, userName, password, studentName, columns, column;
 
         switch (method)
         {
@@ -447,42 +443,6 @@ public class ServerTask extends AsyncTask <String, Void, String> {
                     e.printStackTrace();
                 }
                 break;
-            case "parent_login":
-                userName = params[1];
-                password = params[2];
-                try {
-                    String response = "";
-                    String line = "";
-                    URL url = new URL (parentLoginUrl);
-                    HttpURLConnection httpURLConnection = (HttpURLConnection) url.openConnection();
-                    httpURLConnection.setRequestMethod("POST");
-                    httpURLConnection.setDoOutput(true);
-                    httpURLConnection.setDoInput(true);
-                    OutputStream outputStream = httpURLConnection.getOutputStream();
-                    BufferedWriter bufferedWriter = new BufferedWriter(new OutputStreamWriter(outputStream, "UTF-8"));
-                    String data = URLEncoder.encode("user_name", "UTF-8") + "=" + URLEncoder.encode(userName, "UTF-8") + "&" +
-                            URLEncoder.encode("password", "UTF-8") + "=" + URLEncoder.encode(password, "UTF-8");
-                    bufferedWriter.write(data);
-                    bufferedWriter.flush();
-                    bufferedWriter.close();
-                    outputStream.close();
-
-                    InputStream inputStream = httpURLConnection.getInputStream();
-                    BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(inputStream, "iso-8859-1"));
-                    while ((line = bufferedReader.readLine()) != null)
-                    {
-                        response += line;
-                    }
-                    bufferedReader.close();
-                    inputStream.close();
-                    httpURLConnection.disconnect();
-                    return response;
-                } catch (MalformedURLException e) {
-                    e.printStackTrace();
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                break;
         }
         return null;
     }
@@ -494,10 +454,7 @@ public class ServerTask extends AsyncTask <String, Void, String> {
 
     @Override
     protected void onPostExecute(String result) {
-        if (result.equals("Success")) {
-            Toast.makeText(context, result, Toast.LENGTH_LONG).show();
-        }
-        else if (result.contains("added!"))
+        if (result.contains("added!"))
         {
             Toast.makeText(context, result, Toast.LENGTH_LONG).show();
         }

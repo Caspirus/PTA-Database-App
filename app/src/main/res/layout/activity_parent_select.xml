@@ -9,7 +9,13 @@
     android:paddingRight="8dp"
     android:paddingTop="8dp"
     tools:context="casper.pta_database.ParentSelect"
-    android:orientation="horizontal">
+    android:orientation="vertical">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Select Course:" />
 
     <ListView
         android:id="@+id/listAllClasses"

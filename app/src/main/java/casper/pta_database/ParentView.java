@@ -1,6 +1,7 @@
 package casper.pta_database;
 
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.app.ActionBar;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
 import android.widget.ListView;
@@ -8,14 +9,16 @@ import android.widget.ListView;
 import java.util.concurrent.ExecutionException;
 
 public class ParentView extends AppCompatActivity {
-
+    ActionBar actionBar;
     ListView parentAssignments, parentGrades;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_parent_view);
+        actionBar = getSupportActionBar();
         parentAssignments = (ListView) findViewById(R.id.listParentAssignments);
         parentGrades = (ListView) findViewById(R.id.listParentGradeValues);
+        actionBar.setTitle(ParentSelect.student.getCurrentClass());
         ArrayAdapter<String> arrayAdapterAssignments = new ArrayAdapter<String>(this, R.layout.list_view_custom, getAssignments());
         parentAssignments.setAdapter(arrayAdapterAssignments);
         ArrayAdapter<String> arrayAdapterGrades = new ArrayAdapter<String>(this, R.layout.list_view_custom, getGrades());

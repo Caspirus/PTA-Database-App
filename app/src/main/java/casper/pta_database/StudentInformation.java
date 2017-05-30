@@ -4,20 +4,21 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.widget.ListView;
 import android.widget.ArrayAdapter;
+import android.support.v7.app.ActionBar;
 
 import java.util.concurrent.ExecutionException;
 
 public class StudentInformation extends AppCompatActivity {
-    String method;
     ListView assignments, grades;
-
+    ActionBar actionBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_student_information);
-
+        actionBar = getSupportActionBar();
         assignments = (ListView) findViewById(R.id.listAssignments);
         grades = (ListView) findViewById(R.id.listGradeValues);
+        actionBar.setTitle(TeacherEdit.student.getName());
         ArrayAdapter<String> arrayAdapterAssignments = new ArrayAdapter<String>(this, R.layout.list_view_custom, getAssignments());
         assignments.setAdapter(arrayAdapterAssignments);
         ArrayAdapter<String> arrayAdapterGrades = new ArrayAdapter<String>(this, R.layout.list_view_custom, getGrades());
@@ -27,7 +28,7 @@ public class StudentInformation extends AppCompatActivity {
 
     private String[] getAssignments ()
     {
-        method = "get_columns";
+        String method = "get_columns";
         ServerTask serverTask = new ServerTask(this);
         serverTask.execute(method, TeacherSelect.teacher.getTableName());
         String[] columns = new String [0];
