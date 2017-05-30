@@ -1,6 +1,5 @@
 package casper.pta_database;
 
-import android.content.Context;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
@@ -20,7 +19,6 @@ public class MainActivity extends AppCompatActivity {
     EditText userName, password;
     ActionBar actionBar;
     Button button;
-    private Context context;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
